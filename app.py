@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, jsonify, url_for, f
 import secrets
 import boto_utils
 from local_constants import DEPLOYED_GATEWAY
+import requests
 from requests.exceptions import RequestException
 from urllib3.exceptions import HTTPError
 
@@ -25,6 +26,7 @@ def home():
         return redirect(url_for('home'))
     # TODO: Part 1
     # collision prob = 64**7 = 4.3e12 Nearly impossible collision rate
+    random_token = secrets.token_urlsafe(7)
     return render_template('home.html', link=DEPLOYED_GATEWAY + random_token)
 
 
